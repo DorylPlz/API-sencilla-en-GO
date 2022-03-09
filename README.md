@@ -1,7 +1,7 @@
 # API-sencilla-en-GO
 Repositorio de pruebas para el desarrollo de una API REST básica en GO
 
-La idea base era enviar un objeto JSON mediante POST a la api, esta parseara el objeto y retornara el objeto ya parseado con la estructura de datos definida.
+La idea base era enviar un objeto JSON mediante POST a la api, esta parseara el objeto, hará un request a otro endpoint (Se hizo local, pero se pensó para obtener info de otra API) y retornara el objeto ya parseado junto a la data retornada de otro endpoint con la estructura de datos definida.
 
 [  
     {  
