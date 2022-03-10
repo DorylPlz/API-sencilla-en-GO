@@ -20,7 +20,7 @@ type requestAPI struct { //Al declarar las claves del objeto JSON, estas DEBEN e
 	Date    time.Time
 	File    string
 	Null    string
-	Content Content
+	Content []Content
 	Msg     string
 }
 type Content struct {
