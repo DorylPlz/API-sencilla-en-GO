@@ -6,7 +6,7 @@ La idea base era enviar un objeto JSON mediante POST a la api, esta parseara el 
 Igualmente se agregó que tomara content.Cond, y revise el string, si cuenta con una vocal, este sumará los numeros A y B, si no hay vocal, este los multiplicará, retornando value dentro de cada objeto calculado. Esto fue hecho para probar la efectividad de procesamiento de datos a larga escala.  
 
 {
-    "mensaje": "Prueba con node",  
+    "mensaje": "Prueba con go",  
     "id": 1,  
     "key": 1234,  
     "boolean": false,  
