@@ -24,9 +24,10 @@ type requestAPI struct { //Al declarar las claves del objeto JSON, estas DEBEN e
 	Msg     string
 }
 type Content struct {
-	Title  string
-	Number int
-	Desc   string
+	NumberA int
+	NumberB int
+	Cond    string
+	Value   int
 }
 
 func mainResponse(w http.ResponseWriter, r *http.Request) {
@@ -35,6 +36,22 @@ func mainResponse(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal([]byte(reqBody), &post) //Parsea/decodifica el body en la variable post
 
 	post.Msg = getMsgReq() //Asigna el mensaje que se obtiene mediante request de otro endpoint (localhost:8080/getMsg)
+
+	for k, _ := range post.Content {
+		var vocales = 0
+		fmt.Println(post.Content[k].Cond)
+		for _, value := range post.Content[k].Cond {
+			switch value {
+			case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U':
+				vocales++
+			}
+		}
+		if vocales > 0 {
+			post.Content[k].Value = post.Content[k].NumberA + post.Content[k].NumberB
+		} else {
+			post.Content[k].Value = post.Content[k].NumberA * post.Content[k].NumberB
+		}
+	}
 
 	json.NewEncoder(w).Encode(post)    //Ingresa post al output de la respuesta, siendo w la variable que almacena el output
 	newData, err := json.Marshal(post) //Marshal codifica nuevamente el objeto
@@ -57,7 +74,7 @@ func getMsgReq() string { //Request al endpoint getMsg
 
 //Handlers
 func handleRequests() {
-	myRouter := mux.NewRouter().StrictSlash(true)
+	myRouter := mux.NewRouter().StrictSlash(false)
 	myRouter.HandleFunc("/main", mainResponse).Methods("POST")
 	myRouter.HandleFunc("/getMsg", getMsg).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", myRouter))
