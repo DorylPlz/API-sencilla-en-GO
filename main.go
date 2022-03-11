@@ -37,10 +37,10 @@ func mainResponse(w http.ResponseWriter, r *http.Request) {
 
 	post.Msg = getMsgReq() //Asigna el mensaje que se obtiene mediante request de otro endpoint (localhost:8080/getMsg)
 
-	for k, _ := range post.Content {
+	for k, _ := range post.Content { //Recorre post.Content
 		var vocales = 0
 		fmt.Println(post.Content[k].Cond)
-		for _, value := range post.Content[k].Cond {
+		for _, value := range post.Content[k].Cond { //Recorre cada caracter del string Cond
 			switch value {
 			case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U':
 				vocales++
